@@ -21,6 +21,17 @@ describe "Physical Storages API" do
     end
   end
 
+  fcontext "Delete physical storage" do
+    it "Deletion of a single Physical Storage" do
+      provider = FactoryBot.create(:ems_autosde, :name => 'Autosde')
+      physical_storage = FactoryBot.create(:physical_storage, :name => 'test_storage', :ext_management_system => provider)
+      api_basic_authorize('storage_delete')
+      post(api_physical_storage_url(nil, physical_storage), :params => gen_request(:delete))
+      #:message => /#{physical_storage.id}.* refreshing/i,
+      expect_single_action_result(:success => true, :href => api_physical_storage_url(nil, physical_storage))
+    end
+  end
+
   context "GET /api/physical_storages" do
     it "returns all physical_storages" do
       physical_storage = FactoryBot.create(:physical_storage)
