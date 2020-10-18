@@ -2284,6 +2284,8 @@
         :identifier: physical_storage_new
       - :name: refresh
         :identifier: physical_storage_refresh
+      - :name: delete
+        :identifier: physical_storage_delete
     :resource_actions:
       :get:
       - :name: read
@@ -2292,7 +2294,7 @@
       - :name: refresh
         :identifier: physical_storage_refresh
       - :name: delete
-        :identifier: storage_delete
+        :identifier: physical_storage_delete
   :physical_switches:
     :description: Physical Switches
     :identifier: physical_switch
