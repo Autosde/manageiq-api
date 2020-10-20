@@ -21,7 +21,7 @@ module Api
     end
 
     def delete_resource(type, id, _data = nil)
-      raise BadRequestError, "Must specify an id for refreshing a #{type} resource" if id.blank?
+      raise BadRequestError, "Must specify an id for deleting a #{type} resource" if id.blank?
 
       ensure_resource_exists(type, id) if single_resource?
 
@@ -31,9 +31,9 @@ module Api
         api_log_info(msg)
         task_id = physical_storage.delete_physical_storage_queue(User.current_user)
         action_result(true, msg, :task_id => task_id)
+      rescue => err
+        action_result(false, err.to_s)
       end
-    rescue => err
-      action_result(false, err.to_s)
     end
 
     private
