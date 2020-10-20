@@ -32,6 +32,8 @@ module Api
         task_id = physical_storage.delete_physical_storage_queue(User.current_user)
         action_result(true, msg, :task_id => task_id)
       end
+    rescue => err
+      action_result(false, err.to_s)
     end
 
     private
