@@ -2429,30 +2429,30 @@
         :identifier: physical_storage_refresh
       - :name: delete
         :identifier: physical_storage_delete
-  :physical_storage_consumers:
-    :description: Physical Storage Consumers
-    :identifier: physical_storage_consumer
+  :host_initiators:
+    :description: Host Initiators
+    :identifier: host_initiator
     :options:
       - :collection
     :verbs: *gp
-    :klass: PhysicalStorageConsumer
+    :klass: HostInitiator
     :subcollections:
     :collection_actions:
       :get:
         - :name: read
-          :identifier: physical_storage_consumer_show_list
+          :identifier: host_initiator_show_list
       :post:
         - :name: create
-          :identifier: physical_storage_consumer_new
+          :identifier: host_initiator_new
         - :name: refresh
-          :identifier: physical_storage_consumer_refresh
+          :identifier: host_initiator_refresh
     :resource_actions:
       :get:
         - :name: read
-          :identifier: physical_storage_consumer_show
+          :identifier: host_initiator_show
       :post:
         - :name: refresh
-          :identifier: physical_storage_consumer_refresh
+          :identifier: host_initiator_refresh
   :physical_switches:
     :description: Physical Switches
     :identifier: physical_switch
