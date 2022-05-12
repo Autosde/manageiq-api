@@ -15,5 +15,11 @@ module Api
         {:task_id => host_initiator.delete_host_initiator_queue(User.current_user)}
       end
     end
+
+    def safe_delete_resource(type, id, _data = {})
+      api_resource(type, id, "Deleting", :supports => :safe_delete) do |host_initiator|
+        {:task_id => host_initiator.safe_delete_host_initiator_queue(User.current_user)}
+      end
+    end
   end
 end

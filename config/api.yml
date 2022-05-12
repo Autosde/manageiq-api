@@ -1837,6 +1837,8 @@
         :identifier: host_initiator_refresh
       - :name: delete
         :identifier: host_initiator_delete
+      - :name: safe_delete
+        :identifier: host_initiator_safe_delete
     :resource_actions:
       :get:
       - :name: read
@@ -1846,6 +1848,8 @@
         :identifier: host_initiator_refresh
       - :name: delete
         :identifier: host_initiator_delete
+      - :name: safe_delete
+        :identifier: host_initiator_safe_delete
   :hosts:
     :description: Hosts
     :identifier: host
