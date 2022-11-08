@@ -2521,6 +2521,7 @@
     :identifier: physical_storage
     :options:
     - :collection
+    - :custom_actions
     :verbs: *gpppd
     :klass: PhysicalStorage
     :subcollections:
@@ -2544,6 +2545,8 @@
       - :name: read
         :identifier: physical_storage_show
       :post:
+      - :name: filter
+        :identifier: physical_storage_edit
       - :name: refresh
         :identifier: physical_storage_refresh
       - :name: delete
