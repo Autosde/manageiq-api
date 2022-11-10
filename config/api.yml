@@ -2548,6 +2548,20 @@
         :identifier: physical_storage_refresh
       - :name: delete
         :identifier: physical_storage_delete
+  :physical_storage_families:
+    :description: Physical Storage Families
+    :identifier: physical_storage_family
+    :options:
+      - :collection
+    :verbs: *gp
+    :klass: PhysicalStorageFamily
+    :collection_actions:
+      :get:
+        - :name: read
+          :identifier: physical_storage_family_show_list
+      :post:
+        - :name: query
+          :identifier: physical_storage_family_show_list
   :physical_switches:
     :description: Physical Switches
     :identifier: physical_switch
