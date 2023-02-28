@@ -380,4 +380,5 @@ describe "Cloud Volumes API" do
         expect(response).to have_http_status(:bad_request)
       end
     end
+  end
 end
