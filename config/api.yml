@@ -822,6 +822,8 @@
         :identifier: cloud_volume_edit
       - :name: clone
         :identifier: cloud_volume_clone
+      - :name: migrate
+        :identifier: cloud_volume_migrate
     :tags_subcollection_actions:
       :post:
       - :name: assign

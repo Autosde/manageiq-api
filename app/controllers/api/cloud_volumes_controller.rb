@@ -70,5 +70,15 @@ module Api
     rescue => err
       action_result(false, err.to_s)
     end
+
+    def migrate_resource(type, id, data = {})
+      api_resource(type, id, "Migrating Resource from", :supports => :migrate) do |cloud_volume|
+        raise BadRequestError, "Must specify a name" if data["name"].blank?
+
+        {:task_id => cloud_volume.migrate_volume_queue(User.current_userid, data)}
+      end
+    rescue => err
+      action_result(false, err.to_s)
+    end
   end
 end

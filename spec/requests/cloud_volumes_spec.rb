@@ -349,5 +349,35 @@ describe "Cloud Volumes API" do
         expect(response).to have_http_status(:forbidden)
       end
     end
-  end
+
+    describe 'migrate cloud volume' do
+      it 'migrates a Cloud Volume' do
+        zone = FactoryBot.create(:zone)
+        ems = FactoryBot.create(:ems_autosde, :zone => zone)
+        cloud_volume = FactoryBot.create(:cloud_volume_autosde, :ext_management_system => ems)
+
+        api_basic_authorize(action_identifier(:cloud_volumes, :migrate, :resource_actions, :post))
+        stub_supports(cloud_volume.class, :migrate)
+
+        payload = {:action => "migrate", :resources => {:resource_name => 'TestMigrate'}}
+        post(api_cloud_volume_url(nil, cloud_volume), :params => payload)
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'migrate raises an error if the cloud volume does not support migrate' do
+        cloud_volume = FactoryBot.create(:cloud_volume_autosde)
+        stub_supports_not(:cloud_volume, :migrate)
+
+        api_basic_authorize(action_identifier(:cloud_volumes, :migrate, :resource_actions, :post))
+
+        post(api_cloud_volume_url(nil, cloud_volume), :params => {:action => "migrate"})
+        expected = {
+          "success" => false,
+          "message" => a_string_including("Migrate for Cloud Volume id: #{cloud_volume.id} name: '': Feature not available\/supported")
+        }
+        expect(response.parsed_body).to include(expected)
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
 end
